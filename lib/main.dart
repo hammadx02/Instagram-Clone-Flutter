@@ -1,9 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/responsive/mobile_screen_layout.dart';
-import 'package:instagram_clone/responsive/responsive_layout_screen.dart';
-import 'package:instagram_clone/responsive/web_screen_layout.dart';
+import 'package:instagram_clone/screens/signup_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 
 void main() async {
@@ -36,10 +34,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: mobileBackgroundColor,
       ),
-      home: const ResponsiveLayout(
-        mobileScreenLayout: MobileScreenLayout(),
-        webScreenLayout: WebScreenLayout(),
-      ),
+      home: const SignupScreen(),
+      // home: const ResponsiveLayout(
+      //   mobileScreenLayout: MobileScreenLayout(),
+      //   webScreenLayout: WebScreenLayout(),
+      // ),
     );
   }
 }
