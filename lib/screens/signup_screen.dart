@@ -1,7 +1,13 @@
+// ignore_for_file: unused_local_variable
+
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone/resources/auth_methods.dart';
 import 'package:instagram_clone/utils/colors.dart';
+import 'package:instagram_clone/utils/utils.dart';
 import 'package:instagram_clone/widgets/text_field_input.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -16,6 +22,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+  Uint8List? _image;
 
   @override
   void dispose() {
@@ -29,20 +36,21 @@ class _SignupScreenState extends State<SignupScreen> {
 // signup user using our authmethods
   Future<void> _signUp() async {
     String res = await AuthMethods().signUpUser(
-      email: _emailController.text,
-      password: _passwordController.text,
-      username: _usernameController.text,
-      bio: _bioController.text,
-    );
-    // Handle the result as needed.
+        email: _emailController.text,
+        password: _passwordController.text,
+        username: _usernameController.text,
+        bio: _bioController.text,
+        file: _image!);
   }
 
-// String res =  await AuthMethods().signUpUser(
-//         email: _emailController.text,
-//         password: _passwordController.text,
-//         username: _usernameController.text,
-//         bio: _bioController.text,
-//         );
+  selectImage() async {
+    Uint8List im = await pickImage(ImageSource.gallery);
+    // set state because we need to display the image we selected on the corcle avater
+    setState(() {
+      _image = im;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,17 +81,26 @@ class _SignupScreenState extends State<SignupScreen> {
               //Circular widget to accept and show our selected file
               Stack(
                 children: [
-                  const CircleAvatar(
-                    radius: 64,
-                    backgroundImage: NetworkImage(
-                      'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    ),
-                  ),
+                  _image != null
+                      ? CircleAvatar(
+                          radius: 64,
+                          backgroundImage: MemoryImage(_image!),
+                          backgroundColor: Colors.red,
+                        )
+                      : const CircleAvatar(
+                          radius: 64,
+                          backgroundImage: NetworkImage(
+                            'https://i.stack.imgur.com/l60Hf.png',
+                          ),
+                          backgroundColor: Colors.red,
+                        ),
                   Positioned(
                     bottom: -10,
                     left: 80,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        selectImage;
+                      },
                       icon: const Icon(
                         Icons.add_a_photo,
                       ),
