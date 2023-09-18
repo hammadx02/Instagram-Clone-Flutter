@@ -1,7 +1,6 @@
 // ignore_for_file: unused_local_variable
 
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -54,6 +53,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(
@@ -99,7 +99,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     left: 80,
                     child: IconButton(
                       onPressed: () {
-                        selectImage;
+                        selectImage();
                       },
                       icon: const Icon(
                         Icons.add_a_photo,

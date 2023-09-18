@@ -1,5 +1,6 @@
-import 'dart:typed_data';
+// ignore_for_file: unnecessary_null_comparison
 
+import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
