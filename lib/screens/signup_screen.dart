@@ -22,17 +22,27 @@ class _SignupScreenState extends State<SignupScreen> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    
+    _bioController.dispose();
     _usernameController.dispose();
   }
 
 // signup user using our authmethods
-String res = await AuthMethods().signUpUser(
-        email: _emailController.text,
-        password: _passwordController.text,
-        username: _usernameController.text,
-        bio: _bioController.text,
-        );
+  Future<void> _signUp() async {
+    String res = await AuthMethods().signUpUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+      username: _usernameController.text,
+      bio: _bioController.text,
+    );
+    // Handle the result as needed.
+  }
+
+// String res =  await AuthMethods().signUpUser(
+//         email: _emailController.text,
+//         password: _passwordController.text,
+//         username: _usernameController.text,
+//         bio: _bioController.text,
+//         );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,9 +136,11 @@ String res = await AuthMethods().signUpUser(
                 height: 24,
               ),
 
-              //login button
+              //sign up button
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  _signUp();
+                },
                 child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,
