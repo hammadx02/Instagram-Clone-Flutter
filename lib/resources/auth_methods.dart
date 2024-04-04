@@ -30,7 +30,8 @@ class AuthMethods {
           password: password,
         );
 
-        String photoUrl = await  StorageMethods().uploadImageToStorage('profilePic', file, false);
+        String photoUrl = await StorageMethods()
+            .uploadImageToStorage('profilePic', file, false);
 
         //add user to our database
         await _firestore.collection('users').doc(cred.user!.uid).set(
@@ -46,7 +47,13 @@ class AuthMethods {
         );
         res = 'Success';
       }
-    } catch (err) {
+    } 
+    // on FirebaseAuthException catch (e) {
+    //   if (e.code == 'invalid-email') {
+    //     res = 'The email is badly formatted';
+    //   }
+    // } 
+    catch (err) {
       return err.toString();
     }
     return res;
