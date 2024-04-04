@@ -3,6 +3,7 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:instagram_clone/models/user.dart' as model;
 import 'package:instagram_clone/resources/storage_methods.dart';
 
 class AuthMethods {
@@ -34,27 +35,47 @@ class AuthMethods {
             .uploadImageToStorage('profilePic', file, false);
 
         //add user to our database
-        await _firestore.collection('users').doc(cred.user!.uid).set(
-          {
-            'username': username,
-            'uid': cred.user!.uid,
-            'email': email,
-            'bio': bio,
-            'followers': [],
-            'following': [],
-            'photoUrl': photoUrl,
-          },
+
+        model.User user = model.User(
+          username: username,
+          uid: cred.user!.uid,
+          email: email,
+          bio: bio,
+          followers: [],
+          following: [],
+          photoUrl: photoUrl,
         );
+        await _firestore.collection('users').doc(cred.user!.uid).set(user.toJson(),);
         res = 'Success';
       }
-    } 
+    }
     // on FirebaseAuthException catch (e) {
     //   if (e.code == 'invalid-email') {
     //     res = 'The email is badly formatted';
     //   }
-    // } 
+    // }
     catch (err) {
       return err.toString();
+    }
+    return res;
+  }
+
+  // logging in user
+  Future<String> loginUser({
+    required String email,
+    required String password,
+  }) async {
+    String res = 'Some error occurred';
+    try {
+      if (email.isNotEmpty || password.isNotEmpty) {
+        await _auth.signInWithEmailAndPassword(
+            email: email, password: password);
+        res = 'success';
+      } else {
+        res = 'Please enter all the fields';
+      }
+    } catch (e) {
+      res = e.toString();
     }
     return res;
   }
