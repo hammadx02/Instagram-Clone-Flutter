@@ -33,14 +33,14 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
     String res = await AuthMethods().loginUser(
-      email: _emailController.toString(),
-      password: _passwordController.toString(),
+      email: _emailController.text,
+      password: _passwordController.text,
     );
     setState(() {
       _isLoading = false;
     });
     if (res == 'success') {
-       Navigator.of(context).pushReplacement(
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const ResponsiveLayout(
             mobileScreenLayout: MobileScreenLayout(),
@@ -111,7 +111,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
               //login button
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  loginUser();
+                },
                 child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,
