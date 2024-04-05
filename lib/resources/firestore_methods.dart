@@ -16,11 +16,12 @@ class FirestoreMethods {
     String profileImage,
     Uint8List file,
   ) async {
+     // asking uid here because we dont want to make extra calls to firebase auth when we can just get from our state management
     String res = 'Some error occurred';
     try {
       String photoUrl =
           await StorageMethods().uploadImageToStorage('posts', file, true);
-      String postId = const Uuid().v1();
+      String postId = const Uuid().v1(); // creates unique id based on time
       Post post = Post(
         username: username,
         uid: uid,
