@@ -75,9 +75,11 @@ class _SignupScreenState extends State<SignupScreen> {
   selectImage() async {
     Uint8List im = await pickImage(ImageSource.gallery);
     // set state because we need to display the image we selected on the circle avater
-    setState(() {
-      _image = im;
-    });
+    setState(
+      () {
+        _image = im;
+      },
+    );
   }
 
   @override
