@@ -12,6 +12,32 @@ class MobileScreenLayout extends StatefulWidget {
 class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   // String username = '';
 
+  int _page = 0;
+  late PageController pageController; // for page animation
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    pageController.dispose();
+  }
+
+  void onPageChanged(int page) {
+    setState(() {
+      _page = page;
+    });
+  }
+
+  void navigationTapped(int page) {
+    //Animating page
+    pageController.jumpToPage(page);
+  }
+
   // @override
   // void initState() {
   //   super.initState();
@@ -32,12 +58,38 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   @override
   Widget build(BuildContext context) {
     // model.User user = Provider.of<UserProvider>(context).getUser;
-    int _page = 0;
+
     return Scaffold(
-      body: const Center(
-        child: Text(
-          'this is mobile ',
-        ),
+      body: PageView(
+        controller: pageController,
+        onPageChanged: onPageChanged,
+        children: const [
+          Center(
+            child: Text(
+              'Feed',
+            ),
+          ),
+          Center(
+            child: Text(
+              'Search',
+            ),
+          ),
+          Center(
+            child: Text(
+              'Add Post',
+            ),
+          ),
+          Center(
+            child: Text(
+              'Notifications',
+            ),
+          ),
+          Center(
+            child: Text(
+              'Profile',
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: mobileBackgroundColor,
@@ -45,32 +97,50 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/Home.png',
+              scale: 3.3,
               color: _page == 0 ? primaryColor : secondaryColor,
             ),
             label: '',
             backgroundColor: primaryColor,
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/Search.png', color: _page == 1 ? primaryColor : secondaryColor,),
+            icon: Image.asset(
+              'assets/Search.png',
+              scale: 3.3,
+              color: _page == 1 ? primaryColor : secondaryColor,
+            ),
             label: '',
             backgroundColor: primaryColor,
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/Add.png', color: _page == 2 ? primaryColor : secondaryColor,),
+            icon: Image.asset(
+              'assets/Add.png',
+              scale: 3.3,
+              color: _page == 2 ? primaryColor : secondaryColor,
+            ),
             label: '',
             backgroundColor: primaryColor,
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/Like.png', color: _page == 3 ? primaryColor : secondaryColor,),
+            icon: Image.asset(
+              'assets/Like.png',
+              scale: 3.3,
+              color: _page == 3 ? primaryColor : secondaryColor,
+            ),
             label: '',
             backgroundColor: primaryColor,
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/User.png', color: _page == 4 ? primaryColor : secondaryColor,),
+            icon: Image.asset(
+              'assets/User.png',
+              scale: 3.3,
+              color: _page == 4 ? primaryColor : secondaryColor,
+            ),
             label: '',
             backgroundColor: primaryColor,
           ),
         ],
+        onTap: navigationTapped,
       ),
     );
   }
