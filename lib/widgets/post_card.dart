@@ -194,7 +194,7 @@ class PostCard extends StatelessWidget {
                       vertical: 4,
                     ),
                     child: Text(
-                      '7/4/2024',
+                      // '7/4/2024',
                       style: TextStyle(
                         fontSize: 12,
                         color: secondaryColor,
