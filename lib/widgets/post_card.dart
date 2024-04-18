@@ -181,7 +181,7 @@ class PostCard extends StatelessWidget {
                       vertical: 4,
                     ),
                     child: Text(
-                      'View all 200 comments',
+                      // 'View all 200 comments',
                       style: TextStyle(
                         fontSize: 14,
                         color: secondaryColor,
