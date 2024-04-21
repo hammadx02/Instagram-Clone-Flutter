@@ -168,7 +168,7 @@ class PostCard extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: '  Hey this is description to be replaced',
+                          // text: '  Hey this is description to be replaced',
                         ),
                       ],
                     ),
