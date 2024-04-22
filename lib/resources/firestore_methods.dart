@@ -16,7 +16,7 @@ class FirestoreMethods {
     String profileImage,
     Uint8List file,
   ) async {
-     // asking uid here because we dont want to make extra calls to firebase auth when we can just get from our state management
+    // asking uid here because we dont want to make extra calls to firebase auth when we can just get from our state management
     String res = 'Some error occurred';
     try {
       String photoUrl =
@@ -41,5 +41,24 @@ class FirestoreMethods {
       res = err.toString();
     }
     return res;
+  }
+
+  // updating likes
+  Future<void> likePost(String postId, String uid, List likes) async {
+    
+    try {
+      if (likes.contains(uid)) {
+        await _firestore.collection('posts').doc(postId).update({
+          'likes': FieldValue.arrayRemove([uid]),
+        });
+      } else {
+        await _firestore.collection('posts').doc(postId).update({
+          'likes': FieldValue.arrayUnion([uid]),
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    return null;
   }
 }
