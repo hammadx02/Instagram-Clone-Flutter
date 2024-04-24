@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:instagram_clone/models/post.dart';
 import 'package:instagram_clone/resources/storage_methods.dart';
 import 'package:uuid/uuid.dart';
@@ -45,7 +46,6 @@ class FirestoreMethods {
 
   // updating likes
   Future<void> likePost(String postId, String uid, List likes) async {
-    
     try {
       if (likes.contains(uid)) {
         await _firestore.collection('posts').doc(postId).update({
@@ -60,5 +60,33 @@ class FirestoreMethods {
       print(e.toString());
     }
     return null;
+  }
+
+  // storing comments
+  Future<void> postComment(String postId, String text, String uid, String name,
+      String profilePic) async {
+    try {
+      if (text.isNotEmpty) {
+        String commentId = const Uuid().v1();
+        await _firestore
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .doc(commentId)
+            .set({
+          'profilePic': profilePic,
+          'postId': postId,
+          'text': text,
+          'uid': uid,
+          'name': name
+        });
+      } else {
+        const Text('Text is empty');
+      }
+    } catch (e) {
+      print(
+        e.toString(),
+      );
+    }
   }
 }

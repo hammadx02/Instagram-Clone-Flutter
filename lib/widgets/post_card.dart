@@ -174,7 +174,9 @@ class _PostCardState extends State<PostCard> {
               GestureDetector(
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => CommentsScreen(),
+                    builder: (context) => CommentsScreen(
+                      snap: widget.snap,
+                    ),
                   ),
                 ),
                 child: Image.asset(
