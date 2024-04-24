@@ -38,9 +38,8 @@ class _PostCardState extends State<PostCard> {
       commentLen = snap.docs.length;
     } catch (e) {
       showSnackBar(e.toString(), context);
-    setState(() {
-      
-    });}
+      setState(() {});
+    }
   }
 
   @override
@@ -95,7 +94,11 @@ class _PostCardState extends State<PostCard> {
                             ]
                                 .map(
                                   (e) => InkWell(
-                                    onTap: () {},
+                                    onTap: () async {
+                                      FirestoreMethods()
+                                          .deletePost(widget.snap['postId']);
+                                      Navigator.of(context).pop();
+                                    },
                                     child: Container(
                                       padding: const EdgeInsets.symmetric(
                                         horizontal: 16,
@@ -281,7 +284,7 @@ class _PostCardState extends State<PostCard> {
                     padding: const EdgeInsets.symmetric(
                       vertical: 4,
                     ),
-                    child:  Text(
+                    child: Text(
                       'View all $commentLen comments',
                       style: const TextStyle(
                         fontSize: 14,
