@@ -15,7 +15,6 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController searchController = TextEditingController();
   bool isShowUsers = false;
 
-
   @override
   void dispose() {
     super.dispose();
@@ -68,8 +67,9 @@ class _SearchScreenState extends State<SearchScreen> {
                             (snapshot.data! as dynamic).docs[index]['photoUrl'],
                           ),
                         ),
-                        title: Text((snapshot.data! as dynamic).docs[index]
-                            ['username']),
+                        title: Text(
+                          (snapshot.data! as dynamic).docs[index]['username'],
+                        ),
                       ),
                     );
                   },

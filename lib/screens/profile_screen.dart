@@ -176,7 +176,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       return GridView.builder(
                         shrinkWrap: true,
                         itemCount: snapshot.data!.docs.length,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
                           crossAxisSpacing: 5,
                           mainAxisSpacing: 1.5,
@@ -189,6 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               image: NetworkImage(
                                 snap['postUrl'],
                               ),
+                              fit: BoxFit.cover,
                             ),
                           );
                         }),

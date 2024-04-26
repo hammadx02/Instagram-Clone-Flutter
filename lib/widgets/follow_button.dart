@@ -18,8 +18,8 @@ class FollowButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 250,
-      height: 27,
+      width: 260,
+      height: 50,
       padding: const EdgeInsets.only(top: 2),
       child: TextButton(
         onPressed: function,
