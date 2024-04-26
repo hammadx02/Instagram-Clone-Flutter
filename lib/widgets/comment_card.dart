@@ -69,7 +69,6 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class CommentCard extends StatelessWidget {
   final snap;
@@ -104,7 +103,7 @@ class CommentCard extends StatelessWidget {
                         ),
                         TextSpan(
                           text: ' ${snap.data()['text']}',
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ],
                     ),
