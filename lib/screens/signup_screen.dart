@@ -60,7 +60,7 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
         ),
       );
-      showSnackBar(res, context);
+      showSnackBar(context, res);
     }
   }
 

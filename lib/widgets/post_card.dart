@@ -38,7 +38,7 @@ class _PostCardState extends State<PostCard> {
       commentLen = snap.docs.length;
     } catch (e) {
       // ignore: use_build_context_synchronously
-      showSnackBar(e.toString(), context);
+      showSnackBar(context,e.toString());
       setState(() {});
     }
   }
@@ -204,7 +204,7 @@ class _PostCardState extends State<PostCard> {
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => CommentsScreen(
-                      snap: widget.snap['postId'].toString(),
+                      postId: widget.snap['postId'].toString(),
                     ),
                   ),
                 ),
