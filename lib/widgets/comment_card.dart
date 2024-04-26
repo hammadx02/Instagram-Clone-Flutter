@@ -98,28 +98,29 @@ class CommentCard extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                            text: snap.data()['name'],
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            )),
+                          text: snap.data()['name'],
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
                         TextSpan(
                           text: ' ${snap.data()['text']}',
+                          style: TextStyle(color: Colors.white),
                         ),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: Text(
-                      DateFormat.yMMMd().format(
-                        snap.data()['datePublished'],
-                      ),
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  )
+                  // Padding(
+                  //   padding: const EdgeInsets.only(top: 4),
+                  //   child: Text(
+                  //     DateFormat.yMMMd().format(
+                  //       snap['datePublished'].toDate(),
+                  //     ),
+                  //     style: const TextStyle(
+                  //       fontSize: 12,
+                  //       fontWeight: FontWeight.w400,
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),
