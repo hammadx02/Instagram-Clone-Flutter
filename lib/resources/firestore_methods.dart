@@ -118,20 +118,21 @@ class FirestoreMethods {
         });
 
         await _firestore.collection('users').doc(uid).update({
-          following: FieldValue.arrayRemove([followId])
+          'following': FieldValue.arrayRemove([followId])
         });
-      } 
-      else {
+      } else {
         await _firestore.collection('users').doc(followId).update({
           'followers': FieldValue.arrayUnion([uid])
         });
 
         await _firestore.collection('users').doc(uid).update({
-          following: FieldValue.arrayUnion([followId])
+          'following': FieldValue.arrayUnion([followId])
         });
       }
     } catch (e) {
       if (kDebugMode) print(e.toString());
     }
   }
+
+  
 }
