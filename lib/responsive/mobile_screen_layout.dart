@@ -62,6 +62,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
 
     return Scaffold(
       body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         onPageChanged: onPageChanged,
         children: homeScreenItems,

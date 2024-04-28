@@ -15,6 +15,7 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController searchController = TextEditingController();
   bool isShowUsers = false;
 
+
   @override
   void dispose() {
     super.dispose();
@@ -23,6 +24,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mobileBackgroundColor,
